@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import GitHubCalendar from 'react-github-calendar';
-import { VscRepo, VscPerson } from 'react-icons/vsc';
+import Image from "next/image";
+import GitHubCalendar from "react-github-calendar";
+import { VscRepo, VscPerson } from "react-icons/vsc";
 
-import RepoCard from '@/components/RepoCard';
-import { Repo, User } from '@/types';
+import RepoCard from "@/components/RepoCard";
+import { Repo, User } from "@/types";
 
-import styles from '@/styles/GithubPage.module.css';
+import styles from "@/styles/GithubPage.module.css";
 
 interface GithubPageProps {
   repos: Repo[];
@@ -55,22 +55,26 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
           <h3 className={styles.sectionTitle}>Popular Repositories</h3>
         </div>
         <div className={styles.reposContainer}>
-          {repos.map((repo) => (
-            <RepoCard key={repo.id} repo={repo} />
-          ))}
+          {Array.isArray(repos) && repos.length > 0 ? (
+            repos.map((repo) => (
+              <RepoCard key={repo.id} repo={repo} />
+            ))
+          ) : (
+            <p>No repositories found.</p>
+          )}
         </div>
         <div className={styles.contributions}>
           <GitHubCalendar
-            username= "reydstry"
+            username="reydstry"
             hideColorLegend
             hideMonthLabels
             colorScheme="dark"
             theme={{
-              dark: ['#161B22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-              light: ['#161B22', '#0e4429', '#006d32', '#26a641', '#39d353'],
+              dark: ["#161B22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+              light: ["#161B22", "#0e4429", "#006d32", "#26a641", "#39d353"],
             }}
             style={{
-              width: '100%',
+              width: "100%",
             }}
           />
         </div>
@@ -81,37 +85,44 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
 
 export async function getStaticProps() {
   try {
-  const userRes = await fetch(
-    `https://api.github.com/users/reydstry`,
-    {
+    const userRes = await fetch(`https://api.github.com/users/reydstry`, {
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB}`,
+        Authorization: `Bearer ${process.env.GITHUB_API}`,
       },
-    }
-  );
-  const user = await userRes.json();
+    });
 
-  const repoRes = await fetch(
-    `https://api.github.com/users/reydstry/repos?sort=pushed&per_page=6`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.GITHUB}`,
+    if (!userRes.ok) throw new Error("Failed to fetch user");
+
+    const user = await userRes.json();
+
+    const repoRes = await fetch(
+      `https://api.github.com/users/reydstry/repos?sort=pushed&per_page=6`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_API}`,
+        },
+      }
+    );
+
+    if (!repoRes.ok) throw new Error("Failed to fetch repos");
+
+    const repos = await repoRes.json();
+
+    if (!Array.isArray(repos)) throw new Error("Repos is not an array");
+
+    return {
+      props: {
+        repos,
+        user,
       },
-    }
-  );
-  const repos = await repoRes.json();
-
-  return {
-    props: { title: 'GitHub', repos, user },
-    revalidate: 600,
-  };
+      revalidate: 600,
+    };
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching GitHub data:", err);
     return {
       notFound: true,
     };
   }
-
 }
 
 export default GithubPage;
