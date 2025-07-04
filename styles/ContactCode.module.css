@@ -2,7 +2,7 @@
   counter-reset: line;
   font-size: 1.2rem;
   line-height: 2rem;
-  background-color: var(--article-bg);
+  /* background-color: var(--article-bg); */
   border-radius: 4px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);

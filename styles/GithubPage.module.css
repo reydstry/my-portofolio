@@ -37,7 +37,7 @@
 }
 
 .profileSection {
-  background: var(--article-bg);
+  /* background: var(--article-bg); */
   border-radius: 8px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -160,7 +160,7 @@
 }
 
 .contributions {
-  background: var(--article-bg);
+  /* background: var(--article-bg); */
   border-radius: 8px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -168,10 +168,10 @@
   overflow-x: auto;
 }
 
-.contributions article {
+/* .contributions article {
   width: 100% !important;
   min-width: 500px;
-}
+} */
 
 .underline {
   cursor: pointer;
