@@ -80,13 +80,24 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
 };
 
 export async function getStaticProps() {
+  try {
   const userRes = await fetch(
-    `https://api.github.com/users/reydstry`
+    `https://api.github.com/users/reydstry`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+    }
   );
   const user = await userRes.json();
 
   const repoRes = await fetch(
-    `https://api.github.com/users/reydstry/repos?sort=pushed&per_page=6`
+    `https://api.github.com/users/reydstry/repos?sort=pushed&per_page=6`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+    }
   );
   const repos = await repoRes.json();
 
@@ -94,6 +105,13 @@ export async function getStaticProps() {
     props: { title: 'GitHub', repos, user },
     revalidate: 600,
   };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+    };
+  }
+
 }
 
 export default GithubPage;
