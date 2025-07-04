@@ -8,35 +8,35 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Driwwwle',
+    title: 'Rocket Game',
     description:
-      'Discover creative websites and developers. A portal for you to share your projects.',
-    logo: '/logos/driwwwle.svg',
-    link: 'https://github.com/itsnitinr/driwwwle',
-    slug: 'driwwwle',
+      'Simple rocket game built with three.js, HTML, and CSS.',
+    logo: '/logos/rocket.svg',
+    link: 'https://github.com/reydstry/Rocket-Game',
+    slug: 'Rocket Game',
   },
   {
-    title: 'VSCode Portfolio',
+    title: 'Search Engine',
     description:
-      'A Visual Studio Code themed developer portfolio built with Next.js and CSS Modules.',
-    logo: '/logos/vsc.svg',
-    link: 'https://github.com/itsnitinr/vscode-portfolio',
-    slug: 'vscode-portfolio',
+      'A simple search engine developed in Java using JavaFX, implementing efficient data structures and algorithms.',
+    logo: '/logos/search.svg',
+    link: 'https://github.com/reydstry/Search-Engine',
+    slug: 'Search Engine',
   },
   {
-    title: 'Subtrackt',
+    title: 'Djiktra and PSO Algorithm',
     description:
-      'A simple and elegant way to track your subscriptions and save money.',
-    logo: '/logos/subtrackt.svg',
-    link: 'https://github.com/itsnitinr/subtrackt',
-    slug: 'subtrackt',
+      ' A visualization of Dijkstra algorithm and Particle Swarm Optimization (PSO) algorithm using JavaScript.',
+    logo: '/logos/djiktra.svg',
+    link: 'https://github.com/reydstry/DJikstra-and-PSO-Algortihm',
+    slug: 'Djiktra and PSO Algorithm',
   },
   {
-    title: 'Coolify Deployments',
+    title: 'Pharmacy POS',
     description:
-      'VSCode extension to track and deploy your Coolify applications.',
-    logo: '/logos/coolify.svg',
-    link: 'https://github.com/itsnitinr/coolify-vscode-extension',
-    slug: 'coolify-vscode-extension',
+      'A pharmacy point of sale system built with Java and JavaFX, featuring inventory management and Cashier.',
+    logo: '/logos/pills.svg',
+    link: 'https://github.com/reydstry/Pharmacy-POS.git',
+    slug: 'Pharmacy POS',
   },
 ];
