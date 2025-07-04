@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       { hostname: 'media2.dev.to', protocol: 'https' },
     ],
   },
+  output: "export",
 };
 
 export default nextConfig;
