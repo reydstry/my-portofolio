@@ -85,7 +85,7 @@ export async function getStaticProps() {
     `https://api.github.com/users/reydstry`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_API}`,
       },
     }
   );
@@ -95,7 +95,7 @@ export async function getStaticProps() {
     `https://api.github.com/users/reydstry/repos?sort=pushed&per_page=6`,
     {
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        Authorization: `Bearer ${process.env.GITHUB_API}`,
       },
     }
   );
